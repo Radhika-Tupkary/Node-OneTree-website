@@ -11,6 +11,10 @@ hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
 });
 
+hbs.registerHelper('getCurrentYear', () => {
+    return new Date().getFullYear();
+});
+
 
 app.use((req, res, next) => {
     console.log(`${new Date().toString()} : ${req.method} ${req.path}`);
@@ -22,27 +26,32 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
 
 app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', (req, res) => {
     res.render('home.hbs', {
-        pageTitle : 'this is a home page',
+        pageTitle : 'This is a home page',
         user : 'Radhika',
         welcomeMessage : 'Welcome to our home page!',
-        currentYear:new Date().getFullYear()
     })
 
 });
 
 app.get('/about', (req, res) => {
     res.render('about.hbs', {
-        pageTitle: 'injected title of about page',
-        currentYear: new Date().getFullYear()
+        pageTitle: 'Title of about page',
+    });
+
+});
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Title of projects page',
     });
 
 });
