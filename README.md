@@ -1,6 +1,6 @@
 **Description**
 
-This is a sample website **OneTree** : Created using Node.js, Express.js, Handlebars, Partials, BootStrap4, HTML5, CSS3 and Javascript (ES5).
+This is a sample website **OneTree** : Created using Node.js, Express.js, Handlebars, Partials, Bootstrap4, HTML5, CSS3 and Javascript (ES5).
 
 **Getting Started**
 
