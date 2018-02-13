@@ -1,68 +1,52 @@
 const express = require('express');
+const exphbs  = require('express-handlebars');
 const hbs = require('hbs');
-const fs = require('fs');
 let app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8081;
 
 hbs.registerPartials(__dirname + '/views/partials');
+
+//Declaring Express to use Handlerbars template engine with main.handlebars as
+//the default layout
+
+app.engine('hbs', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'hbs');
 
-hbs.registerHelper('screamIt', (text) => {
-    return text.toUpperCase();
-});
-
-hbs.registerHelper('getCurrentYear', () => {
-    return new Date().getFullYear();
-});
-
-
-app.use((req, res, next) => {
-    console.log(`${new Date().toString()} : ${req.method} ${req.path}`);
-    fs.appendFile('server-log.txt', `${new Date().toString()} : ${req.method} ${req.path}` + '\n', (err) => {
-        if(err){
-            consle.log(err);
-        }
-    });
-    next();
-});
-
-// app.use((req, res, next) => {
-//     res.render('maintenance.hbs');
-// });
-
-app.use(express.static(__dirname + '/public'));
-
+//Defining middleware to serve static files
+app.use('/static', express.static('public'));
 
 app.get('/', (req, res) => {
-    res.render('home.hbs', {
-        pageTitle : 'This is a home page',
-        user : 'Radhika',
-        welcomeMessage : 'Welcome to our home page!',
-    })
+    res.render('home.hbs')
+});
+
+app.get('/features', (req, res) => {
+    res.render('features.hbs')
+});
+
+app.get('/numbers', (req, res) => {
+    res.render('numbers.hbs')
+});
+
+app.get('/products', (req, res) => {
+    res.render('products.hbs')
+});
+
+app.get('/timeline', (req, res) => {
+    res.render('timeline.hbs')
+});
+
+app.get('/contact', (req, res) => {
+    res.render('contact.hbs');
 
 });
 
-app.get('/about', (req, res) => {
-    res.render('about.hbs', {
-        pageTitle: 'Title of about page',
-    });
-
-});
-
-app.get('/projects', (req, res) => {
-    res.render('projects.hbs', {
-        pageTitle: 'Title of projects page',
-    });
-
+app.get('/testimonials', (req, res) => {
+    res.render('testimonials.hbs');
 });
 
 app.get('/bad', (req, res) => {
     res.send("<h1>bad request</h1>");
-
 });
-
-
-
 
 app.listen(port, () => {
     console.log(`Server is up and running on port ${port}!`);
