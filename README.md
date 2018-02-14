@@ -5,8 +5,11 @@ This is a sample website **OneTree** : Created using Node.js, Express.js, Handle
 **Getting Started**
 
 git clone https://github.com/Radhika-Tupkary/oneTree-Node-Server.git
+
 cd oneTree-Node-Server
+
 npm install
+
 node server.js
 
 This will spin up a local server at port 8081, visit http://localhost:8081/ in your browser
