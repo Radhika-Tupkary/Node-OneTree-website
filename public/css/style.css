@@ -23,7 +23,7 @@ body {
 
 /* SECTION COVER */
 #cover {
-    height: 100%;
+    height: 91vh;
     background: url(../img/trees.jpg) no-repeat center fixed;
     background-size: cover;
     color: white;
